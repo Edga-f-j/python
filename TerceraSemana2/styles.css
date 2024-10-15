@@ -1,0 +1,115 @@
+.row{
+    padding: 4%;
+}
+
+h4{
+    padding-top: 2%;
+    text-align: center;
+}
+
+.card-title{
+    color: rgb(41, 137, 174);
+    text-align: center;
+}
+.card-text{
+    justify-content: center;
+    text-align: justify;
+}
+
+
+
+ /* Cambiar el color de fondo y texto de la navbar */
+/* Estilo general de la navbar */
+.navbar {
+  background-color: #343a40;
+  padding: 10px 20px;
+}
+
+/* Alinear el contenido de la barra de navegación en pantallas grandes */
+.navbar-collapse {
+  justify-content: space-between;
+}
+
+/* Estilo para los enlaces de navegación */
+.nav-link {
+  color: #ffffff;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: color 0.3s ease, transform 0.3s ease;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Cambiar color y agregar efecto al pasar el mouse */
+.nav-link:hover {
+  color: #6793bfc2;
+  transform: scale(1.1);
+}
+
+/* Estilo para el logo */
+/* Estilo general de la navbar */
+.navbar {
+  background-color: #343a40;
+  padding: 10px 20px;
+}
+
+/* Alinear el contenido de la barra de navegación en pantallas grandes */
+.navbar-collapse {
+  justify-content: space-between;
+}
+
+/* Estilo para los enlaces de navegación */
+.nav-link {
+  color: #ffffff;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 1.2rem; /* Aumentar el tamaño de la letra */
+  padding: 10px 15px; /* Espacio interno para crear el cuadro */
+  background-color: rgba(103, 147, 191, 0.2); /* Fondo con transparencia */
+  border-radius: 10px; /* Bordes redondeados */
+  transition: color 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Cambiar color y agregar efecto al pasar el mouse */
+.nav-link:hover {
+  color: #6793bfc2;
+  background-color: rgba(103, 147, 191, 0.4); /* Fondo más claro al pasar el mouse */
+  transform: scale(1.1);
+}
+
+/* Estilo para el logo */
+.navbar-brand img {
+  transition: transform 0.3s ease;
+}
+
+/* Efecto hover en el logo */
+.navbar-brand:hover img {
+  transform: scale(1.1);
+}
+
+/* Ocultar el logo en pantallas pequeñas */
+@media (max-width: 767px) {
+  .navbar-brand.d-md-block {
+      display: none;
+  }
+}
+
+/* Mostrar el logo solo en móviles */
+@media (max-width: 767px) {
+  .navbar-brand.d-md-none {
+      display: block;
+  }
+}
+
+/* Estilo de navegación en pantallas pequeñas */
+@media (max-width: 576px) {
+  .navbar-nav {
+      text-align: center;
+      width: 100%;
+  }
+
+  .navbar-toggler {
+      margin-left: auto;
+  }
+}
+

@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+        <link rel="stylesheet" href="vehiculos.css">
+        <link rel="stylesheet" href="styles.css">
+
+    <style>
+
+/* ================== DECORACION DEL FRILTRO ================== */
+        .filter {
+            margin-bottom: 20px;
+        }
+        .filter label {
+            margin-right: 10px;
+        }
+        .filter select {
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        
+
+
+        .filter-pill {
+        border-radius: 50px; /* Hacer bordes redondeados */
+        padding: 10px 20px;
+        background-color: #e9ecef;
+        border: 1px solid #6c757d;
+        color: #495057;
+        font-size: 1rem;
+        transition: background-color 0.3s ease;
+        }   
+
+        .filter-pill:hover {
+            background-color: #ced4da; /* Cambiar color en hover */
+        }
+
+        .form-label {
+            font-weight: bold;
+            color: #333;
+        }
+
+
+
+
+    </style>
+
+
+        
+</head>
+<body>
+
+
+
+
+     <!-- ======================================BARRA DE NAVEGACION=============================== -->
+
+        <!--=================== Barra de navegacion ==============-->
+        <nav class="navbar navbar-expand-md bg-dark border-bottom border-body" data-bs-theme="dark">
+            <div class="container-fluid">
+                <!-- Botón toggle para pantallas pequeñas -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-toggler"
+                    aria-controls="navbar-toggler" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+        
+                <!-- Logo centrado en pantallas grandes, en móviles al lado del menú -->
+                <a class="navbar-brand d-md-none" href="index.html">
+                    <img src="images-proyect/Imagen2.png" width="80" alt="Icon">
+                </a>
+        
+                <!-- Contenido de la navbar -->
+                <div class="collapse navbar-collapse justify-content-between" id="navbar-toggler">
+                    <!-- Botones a la izquierda -->
+                    <ul class="navbar-nav me-auto d-flex justify-content-evenly align-items-center w-100 w-md-50">
+                        <li class="nav-item">
+                            <a class="nav-link" href="vehiculos.html">Vehículos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="ofertas.html">Ofertas</a>
+                        </li>
+                    </ul>
+        
+                    <!-- Logo centrado en pantallas medianas en adelante -->
+                    <a class="navbar-brand d-none d-md-block mx-auto" href="index.html">
+                        <img src="images-proyect/Imagen2.png" width="100" alt="Icon">
+                    </a>
+        
+                    <!-- Botones a la derecha -->
+                    <ul class="navbar-nav ms-auto d-flex justify-content-evenly align-items-center w-100 w-md-50">
+                        <li class="nav-item">
+                            <a class="nav-link" href="cotizacion.html">Cotización</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="ubicacion.html">Ubicación</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+
+
+
+
+  
+
+    <div class="container my-4">
+        <div class="row align-items-center">
+            <!-- Filtro de vehículos -->
+            <div class="col-md-4">
+                <label for="vehicle-select" class="form-label">Vehículos</label>
+                <select class="form-select filter-pill" id="vehicle-select" onchange="filterVehicles()">
+                    <option value="all">Todos los vehículos</option>
+                    <option value="Chevrolet-Camaro">Chevrolet Camaro</option>
+                    <option value="Ford">Ford</option>
+                    <option value="Mazda-Rx">Mazda Rx</option>
+                    <option value="Nissan">Nissan</option>
+                    <option value="Toyota">Toyota</option>
+                </select>
+            </div>
+    
+            <!-- Filtro de cilindraje -->
+            <div class="col-md-4">
+                <label for="cilindraje-select" class="form-label">Cilindraje</label>
+                <select class="form-select filter-pill" id="cilindraje-select" onchange="filterVehicles()">
+                    <option value="all">Todos los vehículos</option>
+                    <option value="6.2">6.2 L</option>
+                    <option value="5.3">5.3 L</option>
+                    <option value="5.0">5.0 L</option>
+                    <option value="1.3">1.3 L</option>
+                    <option value="3.8">3.8 L</option>
+                    <option value="2.3">2.3 L</option>
+                    <option value="2.8">2.8 L</option>
+                    <option value="3.0">3.0 L</option>
+                </select>
+            </div>
+
+            <!-- Filtro de potencia maxima -->
+            <div class="col-md-4">
+                <label for="potencia-maxima-select" class="form-label">Potencia Maxima</label>
+                <select class="form-select filter-pill" id="potencia-maxima-select" onchange="filterVehicles()">
+                    <option value="all">Todos los vehículos</option>
+                    <option value="650">650 hp</option>
+                    <option value="420">420 hp</option>
+                    <option value="662">662 hp</option>
+                    <option value="450">450 hp</option>
+                    <option value="135">135 hp</option>
+                    <option value="255">255 hp</option>
+                    <option value="600">600 hp</option>
+                    <option value="190">190 hp</option>
+                    <option value="204">204 hp</option>
+                    <option value="382">382 hp</option>
+                </select>
+            </div>
+
+            <!-- Filtro de caballos-fuerza -->
+            <div class="col-md-4">
+                <label for="caballos-fuerza-select" class="form-label">Caballos de fuerza</label>
+                <select class="form-select filter-pill" id="caballos-fuerza-select" onchange="filterVehicles()">
+                    <option value="all">Todos los vehículos</option>
+                    <option value="455">455 hp</option>
+                    <option value="355">355 hp</option>
+                    <option value="435">435 hp</option>
+                    <option value="400">400 hp</option>
+                    <option value="135">135 hp</option>
+                    <option value="255">255 hp</option>
+                    <option value="600">600 hp</option>
+                    <option value="190">190 hp</option>
+                    <option value="204">204 hp</option>
+                    <option value="382">382 hp</option>
+                </select>
+            </div>
+
+            <!-- Filtro de traccion -->
+            <div class="col-md-4">
+                <label for="traccion-select" class="form-label">Traccion</label>
+                <select class="form-select filter-pill" id="traccion-select" onchange="filterVehicles()">
+                    <option value="all">Todos los vehículos</option>
+                    <option value="Trasera">Trasera</option>
+                    <option value="4x4">4x4</option>
+                    <option value="tracción-por-cuatro-ruedas">Tracción por cuatro ruedas</option>
+                </select>
+            </div>
+
+            <!-- Filtro de cilindraje -->
+            <div class="col-md-4">
+                <label for="cambios-select" class="form-label">Caja de cambios</label>
+                <select class="form-select filter-pill" id="cambios-select" onchange="filterVehicles()">
+                    <option value="all">Todos los vehículos</option>
+                    <option value="Automatica">Automatica</option>
+                    <option value="Manual">Manual</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    
+    
+    
+    
+    
+    
+
+
+<div class="wrapper" style="padding-top: 3%;">
+
+    
+<!--   ============================================= CARTAS  ========================================== -->
+<!--   ============================================= CARRO 1  ========================================== -->
+    <div class="vehicle-card Chevrolet-Camaro cilindraje-6.2 potencia-maxima-650 caballos-fuerza-455 traccion-Trasera cambios-Automatica"><!--   cilindraje-4.2       =================== aqui se uso para que se filtre colocando el nombre del vehiculo    ============== -->
+        <div class="details">      
+      <div class="thumb-gallery">
+        <img class="first" src="/images-cars/chevrolet camaro f.jpg" />
+        <img class="second" src="/images-cars/chevrolet camaro a.jpg" />        
+      </div>
+            <div class="info">
+                <h3>Chevrolet Camaro ZL1</h3>
+                <div class="stars" data-stars="1">
+                    <svg height="22" width="20" class="star rating" data-rating="5">
+                        <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" style="fill-rule:nonzero;"/>
+                    </svg>
+                    <svg height="22" width="20" class="star rating" data-rating="2">
+                        <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" style="fill-rule:nonzero;"/>
+                    </svg>
+                    <svg height="22" width="20" class="star rating" data-rating="3">
+                        <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" style="fill-rule:nonzero;"/>
+                    </svg>
+                    <svg height="22" width="20" class="star rating" data-rating="4">
+                        <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" style="fill-rule:nonzero;"/>
+                    </svg>
+                    <svg height="22" width="20" class="star rating" data-rating="5">
+                        <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" style="fill-rule:nonzero;"/>
+                    </svg>
+                </div>
+                <div class="price">
+                    <span>Price Starting at</span>
+                    <h4>$2,998,000</h4>
+                </div>
+                <div class="ctas">
+                    <a href="#" class="btn secondary">Cars for Sale</a>
+                    <div style="clear:both;"></div>
+                </div>
+                
+                <div class="specs">
+                    <div class="spec mpg">
+                        <span>Cilindrajey</span>
+                        <p>6.2<span>L</p>
+                    </div>
+                    <div class="spec mpg">
+                        <span>Potencia</span>
+                        <p>650<span>hp</p>
+                    </div>
+                    <div class="spec mpg">
+                        <span>Cab. fuerza</span>
+                        <p>455<span>Hp</p>
+                    </div>
+                    <div class="spec mpg">
+                        <span>Traccion</span>
+                        <p>Trasera</p>
+                    </div>
+                    <div class="spec mpg">
+                        <span>Caja cambios</span>
+                        <p>Automatica</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!--   ================================================================================================= -->
+<!--   ============================================= CARRO 2  ========================================== -->
+<!--   ================================================================================================= -->
+  <div class="vehicle-card Chevrolet-Camaro cilindraje-5.3 potencia-maxima-420 caballos-fuerza-355 traccion-4x4 cambios-Automatica">
+        <div class="details">      
+      <div class="thumb-gallery">
+        <img class="first" src="/images-cars/chevrolet colorado a.jpg" />
+        <img class="second" src="/images-cars/chevrolet colorado f.jpg" />        
+      </div>
+            <div class="info">
+                <h3>Chevrolet Z71</h3>
+                <div class="stars" data-stars="1">
+                    <svg height="22" width="20" class="star rating" data-rating="5">
+                        <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" style="fill-rule:nonzero;"/>
+                    </svg>
+                    <svg height="22" width="20" class="star rating" data-rating="2">
+                        <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" style="fill-rule:nonzero;"/>
+                    </svg>
+                    <svg height="22" width="20" class="star rating" data-rating="3">
+                        <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" style="fill-rule:nonzero;"/>
+                    </svg>
+                    <svg height="22" width="20" class="star rating" data-rating="4">
+                        <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" style="fill-rule:nonzero;"/>
+                    </svg>
+                    <svg height="22" width="20" class="star rating" data-rating="5">
+                        <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" style="fill-rule:nonzero;"/>
+                    </svg>
+                </div>
+                <div class="price">
+                    <span>Price Starting at</span>
+                    <h4>$157,995</h4>
+                </div>
+                <div class="ctas">
+                    <a href="#" class="btn secondary">Cars for Sale</a>
+                    <div style="clear:both;"></div>
+                </div>
+                
+                <div class="specs">
+                    <div class="spec mpg">
+                        <span>Cilindrajey</span>
+                        <p>5.3<span>L</p>
+                    </div>
+                    <div class="spec mpg">
+                        <span>Potencia</span>
+                        <p>420<span>hp</p>
+                    </div>
+                    <div class="spec mpg">
+                        <span>Cab. fuerza</span>
+                        <p>355<span>Hp</p>
+                    </div>
+                    <div class="spec mpg">
+                        <span>Traccion</span>
+                        <p>4x4</p>
+                    </div>
+                    <div class="spec mpg">
+                        <span>Caja cambios</span>
+                        <p>Automatica</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<!--   ================================================================================================= -->
+<!--   ============================================= CARRO 3  ========================================== -->
+<!--   ================================================================================================= -->
+    <div class="vehicle-card Ford cilindraje-5.0 potencia-maxima-662 caballos-fuerza-435 traccion-Trasera cambios-Manual">
+        <div class="details">      
+      <div class="thumb-gallery">
+        <img class="first" src="/images-cars/ford mustan a.jpg" />
+        <img class="second" src="/images-cars/ford mustan f.jpg" />        
+      </div>
+            <div class="info">
+                <h3>Ford Mustang 2015</h3>
+                <div class="stars" data-stars="1">
+                    <svg height="22" width="20" class="star rating" data-rating="5">
+                        <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" style="fill-rule:nonzero;"/>
+                    </svg>
+                    <svg height="22" width="20" class="star rating" data-rating="2">
+                        <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" style="fill-rule:nonzero;"/>
+                    </svg>
+                    <svg height="22" width="20" class="star rating" data-rating="3">
+                        <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" style="fill-rule:nonzero;"/>
+                    </svg>
+                    <svg height="22" width="20" class="star rating" data-rating="4">
+                        <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" style="fill-rule:nonzero;"/>
+                    </svg>
+                    <svg height="22" width="20" class="star rating" data-rating="5">
+                        <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" style="fill-rule:nonzero;"/>
+                    </svg>
+                </div>
+                <div class="price">
+                    <span>Price Starting at</span>
+                    <h4>$203,295</h4>
+                </div>
+                <div class="ctas">
+                    <a href="#" class="btn secondary">Cars for Sale</a>
+                    <div style="clear:both;"></div>
+                </div>
+                
+                <div class="specs">
+                    <div class="spec mpg">
+                        <span>Cilindrajey</span>
+                        <p>5.0<span>L</p>
+                    </div>
+                    <div class="spec mpg">
+                        <span>Potencia</span>
+                        <p>662<span>hp</p>
+                    </div>
+                    <div class="spec mpg">
+                        <span>Cab. fuerza</span>
+                        <p>435<span>Hp</p>
+                    </div>
+                    <div class="spec mpg">
+                        <span>Traccion</span>
+                        <p>Trasera</p>
+                    </div>
+                    <div class="spec mpg">
+                        <span>Caja cambios</span>
+                        <p>Manual</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+<!--   ================================================================================================= -->
+<!--   ============================================= CARRO 4 ========================================== -->
+<!--   ================================================================================================= -->
+<div class="vehicle-card Ford cilindraje-5.0 potencia-maxima-450 caballos-fuerza-400 traccion-4x4 cambios-Automatica">
+    <div class="details">      
+  <div class="thumb-gallery">
+    <img class="first" src="/images-cars/ford raptor a.jpg" />
+    <img class="second" src="/images-cars/ford raptor f.jpg" />        
+  </div>
+        <div class="info">
+            <h3>Ford F-150</h3>
+            <div class="stars" data-stars="1">
+                <svg height="22" width="20" class="star rating" data-rating="5">
+                    <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" style="fill-rule:nonzero;"/>
+                </svg>
+                <svg height="22" width="20" class="star rating" data-rating="2">
+                    <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" style="fill-rule:nonzero;"/>
+                </svg>
+                <svg height="22" width="20" class="star rating" data-rating="3">
+                    <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" style="fill-rule:nonzero;"/>
+                </svg>
+                <svg height="22" width="20" class="star rating" data-rating="4">
+                    <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" style="fill-rule:nonzero;"/>
+                </svg>
+                <svg height="22" width="20" class="star rating" data-rating="5">
+                    <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" style="fill-rule:nonzero;"/>
+                </svg>
+            </div>
+            <div class="price">
+                <span>Price Starting at</span>
+                <h4>$203,295</h4>
+            </div>
+            <div class="ctas">
+                <a href="#" class="btn secondary">Cars for Sale</a>
+                <div style="clear:both;"></div>
+            </div>
+            
+            <div class="specs">
+                <div class="spec mpg">
+                    <span>Cilindrajey</span>
+                    <p>5.0<span>L</p>
+                </div>
+                <div class="spec mpg">
+                    <span>Potencia</span>
+                    <p>450<span>hp</p>
+                </div>
+                <div class="spec mpg">
+                    <span>Cab. fuerza</span>
+                    <p>400<span>Hp</p>
+                </div>
+                <div class="spec mpg">
+                    <span>Traccion</span>
+                    <p>4x4</p>
+                </div>
+                <div class="spec mpg">
+                    <span>Caja cambios</span>
+                    <p>Automatica</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!--   ================================================================================================= -->
+<!--   ============================================= CARRO 5  ========================================== -->
+<!--   ================================================================================================= -->
+<div class="vehicle-card Mazda-Rx cilindraje-1.3 potencia-maxima-135 caballos-fuerza-135 traccion-Trasera cambios-Manual">
+    <div class="details">      
+  <div class="thumb-gallery">
+    <img class="first" src="/images-cars/mazda rx4 a.jpg" />
+    <img class="second" src="/images-cars/mazda rx4 f.jpg" />        
+  </div>
+        <div class="info">
+            <h3>Mazda RX-4</h3>
+            <div class="stars" data-stars="1">
+                <svg height="22" width="20" class="star rating" data-rating="5">
+                    <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" style="fill-rule:nonzero;"/>
+                </svg>
+                <svg height="22" width="20" class="star rating" data-rating="2">
+                    <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" style="fill-rule:nonzero;"/>
+                </svg>
+                <svg height="22" width="20" class="star rating" data-rating="3">
+                    <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" style="fill-rule:nonzero;"/>
+                </svg>
+                <svg height="22" width="20" class="star rating" data-rating="4">
+                    <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" style="fill-rule:nonzero;"/>
+                </svg>
+                <svg height="22" width="20" class="star rating" data-rating="5">
+                    <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" style="fill-rule:nonzero;"/>
+                </svg>
+            </div>
+            <div class="price">
+                <span>Price Starting at</span>
+                <h4>$203,295</h4>
+            </div>
+            <div class="ctas">
+                <a href="#" class="btn secondary">Cars for Sale</a>
+                <div style="clear:both;"></div>
+            </div>
+            
+            <div class="specs">
+                <div class="spec mpg">
+                    <span>Cilindrajey</span>
+                    <p>1.3<span>L</p>
+                </div>
+                <div class="spec mpg">
+                    <span>Potencia</span>
+                    <p>135<span>hp</p>
+                </div>
+                <div class="spec mpg">
+                    <span>Cab. fuerza</span>
+                    <p>135<span>Hp</p>
+                </div>
+                <div class="spec mpg">
+                    <span>Traccion</span>
+                    <p>Trasera</p>
+                </div>
+                <div class="spec mpg">
+                    <span>Caja cambios</span>
+                    <p>Manual</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!--   ================================================================================================= -->
+<!--   ============================================= CARRO 6  ========================================== -->
+<!--   ================================================================================================= -->
+<div class="vehicle-card Mazda-Rx cilindraje-1.3 potencia-maxima-255 caballos-fuerza-255 traccion-Trasera cambios-Manual">
+    <div class="details">      
+  <div class="thumb-gallery">
+    <img class="first" src="/images-cars/mazda rx7 a.jpg" />
+    <img class="second" src="/images-cars/mazda rx7 f.jpg" />        
+  </div>
+        <div class="info">
+            <h3>Mazda RX-4 (1992)</h3>
+            <div class="stars" data-stars="1">
+                <svg height="22" width="20" class="star rating" data-rating="5">
+                    <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" style="fill-rule:nonzero;"/>
+                </svg>
+                <svg height="22" width="20" class="star rating" data-rating="2">
+                    <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" style="fill-rule:nonzero;"/>
+                </svg>
+                <svg height="22" width="20" class="star rating" data-rating="3">
+                    <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" style="fill-rule:nonzero;"/>
+                </svg>
+                <svg height="22" width="20" class="star rating" data-rating="4">
+                    <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" style="fill-rule:nonzero;"/>
+                </svg>
+                <svg height="22" width="20" class="star rating" data-rating="5">
+                    <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" style="fill-rule:nonzero;"/>
+                </svg>
+            </div>
+            <div class="price">
+                <span>Price Starting at</span>
+                <h4>$203,295</h4>
+            </div>
+            <div class="ctas">
+                <a href="#" class="btn secondary">Cars for Sale</a>
+                <div style="clear:both;"></div>
+            </div>
+            
+            <div class="specs">
+                <div class="spec mpg">
+                    <span>Cilindrajey</span>
+                    <p>1.3<span>L</p>
+                </div>
+                <div class="spec mpg">
+                    <span>Potencia</span>
+                    <p>255<span>hp</p>
+                </div>
+                <div class="spec mpg">
+                    <span>Cab. fuerza</span>
+                    <p>255<span>Hp</p>
+                </div>
+                <div class="spec mpg">
+                    <span>Traccion</span>
+                    <p>Trasera</p>
+                </div>
+                <div class="spec mpg">
+                    <span>Caja cambios</span>
+                    <p>Manual</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--   ================================================================================================= -->
+<!--   ============================================= CARRO 7  ========================================== -->
+<!--   ================================================================================================= -->
+<div class="vehicle-card Nissan cilindraje-3.8 potencia-maxima-600 caballos-fuerza-600 traccion-por-cuatro-ruedas cambios-Manual">
+    <div class="details">      
+  <div class="thumb-gallery">
+    <img class="first" src="/images-cars/nissan gtr a.jpg" />
+    <img class="second" src="/images-cars/nissan gtr f.jpg" />        
+  </div>
+        <div class="info">
+            <h3>Nissan GT-R R35 Nismo</h3>
+            <div class="stars" data-stars="1">
+                <svg height="22" width="20" class="star rating" data-rating="5">
+                    <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" style="fill-rule:nonzero;"/>
+                </svg>
+                <svg height="22" width="20" class="star rating" data-rating="2">
+                    <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" style="fill-rule:nonzero;"/>
+                </svg>
+                <svg height="22" width="20" class="star rating" data-rating="3">
+                    <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" style="fill-rule:nonzero;"/>
+                </svg>
+                <svg height="22" width="20" class="star rating" data-rating="4">
+                    <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" style="fill-rule:nonzero;"/>
+                </svg>
+                <svg height="22" width="20" class="star rating" data-rating="5">
+                    <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" style="fill-rule:nonzero;"/>
+                </svg>
+            </div>
+            <div class="price">
+                <span>Price Starting at</span>
+                <h4>$203,295</h4>
+            </div>
+            <div class="ctas">
+                <a href="#" class="btn secondary">Cars for Sale</a>
+                <div style="clear:both;"></div>
+            </div>
+            
+            <div class="specs">
+                <div class="spec mpg">
+                    <span>Cilindraje</span>
+                    <p>3.8<span>L</p>
+                </div>
+                <div class="spec mpg">
+                    <span>Potencia</span>
+                    <p>600<span>hp</p>
+                </div>
+                <div class="spec mpg">
+                    <span>Cab. fuerza</span>
+                    <p>600<span>Hp</p>
+                </div>
+                <div class="spec mpg">
+                    <span>Traccion</span>
+                    <p>Cuatro ruedas</p>
+                </div>
+                <div class="spec mpg">
+                    <span>Caja cambios</span>
+                    <p>Automatica</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--   ================================================================================================= -->
+<!--   ============================================= CARRO 8  ========================================== -->
+<!--   ================================================================================================= -->
+<div class="vehicle-card Nissan cilindraje-2.3 potencia-maxima-190 caballos-fuerza-190 traccion-4x4 cambios-Manual">
+    <div class="details">      
+  <div class="thumb-gallery">
+    <img class="first" src="/images-cars/nissan navara a.jpg" />
+    <img class="second" src="/images-cars/nissan navara f.jpg" />        
+  </div>
+        <div class="info">
+            <h3>Nissan Navara Pro 4X</h3>
+            <div class="stars" data-stars="1">
+                <svg height="22" width="20" class="star rating" data-rating="5">
+                    <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" style="fill-rule:nonzero;"/>
+                </svg>
+                <svg height="22" width="20" class="star rating" data-rating="2">
+                    <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" style="fill-rule:nonzero;"/>
+                </svg>
+                <svg height="22" width="20" class="star rating" data-rating="3">
+                    <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" style="fill-rule:nonzero;"/>
+                </svg>
+                <svg height="22" width="20" class="star rating" data-rating="4">
+                    <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" style="fill-rule:nonzero;"/>
+                </svg>
+                <svg height="22" width="20" class="star rating" data-rating="5">
+                    <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" style="fill-rule:nonzero;"/>
+                </svg>
+            </div>
+            <div class="price">
+                <span>Price Starting at</span>
+                <h4>$203,295</h4>
+            </div>
+            <div class="ctas">
+                <a href="#" class="btn secondary">Cars for Sale</a>
+                <div style="clear:both;"></div>
+            </div>
+            
+            <div class="specs">
+                <div class="spec mpg">
+                    <span>Cilindraje</span>
+                    <p>2.3<span>L</p>
+                </div>
+                <div class="spec mpg">
+                    <span>Potencia</span>
+                    <p>190<span>hp</p>
+                </div>
+                <div class="spec mpg">
+                    <span>Cab. fuerza</span>
+                    <p>190<span>Hp</p>
+                </div>
+                <div class="spec mpg">
+                    <span>Traccion</span>
+                    <p>4x4</p>
+                </div>
+                <div class="spec mpg">
+                    <span>Caja cambios</span>
+                    <p>Manual</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--   ================================================================================================= -->
+<!--   ============================================= CARRO 9  ========================================== -->
+<!--   ================================================================================================= -->
+<div class="vehicle-card Toyota cilindraje-2.8 potencia-maxima-204 caballos-fuerza-204 traccion-4x4 cambios-Manual">
+    <div class="details">      
+  <div class="thumb-gallery">
+    <img class="first" src="/images-cars/toyota hilux a.jpg" />
+    <img class="second" src="/images-cars/toyota hilux f.jpg" />        
+  </div>
+        <div class="info">
+            <h3>Toyota Hilux SR5</h3>
+            <div class="stars" data-stars="1">
+                <svg height="22" width="20" class="star rating" data-rating="5">
+                    <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" style="fill-rule:nonzero;"/>
+                </svg>
+                <svg height="22" width="20" class="star rating" data-rating="2">
+                    <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" style="fill-rule:nonzero;"/>
+                </svg>
+                <svg height="22" width="20" class="star rating" data-rating="3">
+                    <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" style="fill-rule:nonzero;"/>
+                </svg>
+                <svg height="22" width="20" class="star rating" data-rating="4">
+                    <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" style="fill-rule:nonzero;"/>
+                </svg>
+                <svg height="22" width="20" class="star rating" data-rating="5">
+                    <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" style="fill-rule:nonzero;"/>
+                </svg>
+            </div>
+            <div class="price">
+                <span>Price Starting at</span>
+                <h4>$203,295</h4>
+            </div>
+            <div class="ctas">
+                <a href="#" class="btn secondary">Cars for Sale</a>
+                <div style="clear:both;"></div>
+            </div>
+            
+            <div class="specs">
+                <div class="spec mpg">
+                    <span>Cilindraje</span>
+                    <p>2.8<span>L</p>
+                </div>
+                <div class="spec mpg">
+                    <span>Potencia</span>
+                    <p>204<span>hp</p>
+                </div>
+                <div class="spec mpg">
+                    <span>Cab. fuerza</span>
+                    <p>204<span>Hp</p>
+                </div>
+                <div class="spec mpg">
+                    <span>Traccion</span>
+                    <p>4x4</p>
+                </div>
+                <div class="spec mpg">
+                    <span>Caja cambios</span>
+                    <p>Manual</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--   ================================================================================================= -->
+<!--   ============================================= CARRO 10  ========================================== -->
+<!--   ================================================================================================= -->
+<div class="vehicle-card Toyota cilindraje-3.0 potencia-maxima-382 caballos-fuerza-382 traccion-Trasera cambios-Automatica">
+    <div class="details">      
+  <div class="thumb-gallery">
+    <img class="first" src="/images-cars/toyota supra a.jpg" />
+    <img class="second" src="/images-cars/toyota supra f.jpg" />        
+  </div>
+        <div class="info">
+            <h3>Toyota GR Supra 3.0</h3>
+            <div class="stars" data-stars="1">
+                <svg height="22" width="20" class="star rating" data-rating="5">
+                    <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" style="fill-rule:nonzero;"/>
+                </svg>
+                <svg height="22" width="20" class="star rating" data-rating="2">
+                    <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" style="fill-rule:nonzero;"/>
+                </svg>
+                <svg height="22" width="20" class="star rating" data-rating="3">
+                    <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" style="fill-rule:nonzero;"/>
+                </svg>
+                <svg height="22" width="20" class="star rating" data-rating="4">
+                    <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" style="fill-rule:nonzero;"/>
+                </svg>
+                <svg height="22" width="20" class="star rating" data-rating="5">
+                    <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" style="fill-rule:nonzero;"/>
+                </svg>
+            </div>
+            <div class="price">
+                <span>Price Starting at</span>
+                <h4>$203,295</h4>
+            </div>
+            <div class="ctas">
+                <a href="#" class="btn secondary">Cars for Sale</a>
+                <div style="clear:both;"></div>
+            </div>
+            
+            <div class="specs">
+                <div class="spec mpg">
+                    <span>Cilindrajey</span>
+                    <p>3.0<span>L</p>
+                </div>
+                <div class="spec mpg">
+                    <span>Potencia</span>
+                    <p>382<span>hp</p>
+                </div>
+                <div class="spec mpg">
+                    <span>Cab. fuerza</span>
+                    <p>382<span>Hp</p>
+                </div>
+                <div class="spec mpg">
+                    <span>Traccion</span>
+                    <p>Trasera</p>
+                </div>
+                <div class="spec mpg">
+                    <span>Caja cambios</span>
+                    <p>Automatica</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    </div>
+
+
+    
+    
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+        <script>
+            
+        function filterVehicles() {
+            const vehicleSelect = document.getElementById('vehicle-select').value;
+            const cilindrajeSelect = document.getElementById('cilindraje-select').value;
+            const potenciaSelect = document.getElementById('potencia-maxima-select').value;
+            const caballoseSelect = document.getElementById('caballos-fuerza-select').value;
+            const tranccionSelect = document.getElementById('traccion-select').value;
+            const cambiosSelect = document.getElementById('cambios-select').value;
+            const allVehicles = document.querySelectorAll('.vehicle-card');
+
+            allVehicles.forEach(card => {
+                const matchesVehicle = (vehicleSelect === 'all') || card.classList.contains(vehicleSelect);
+                const matchesCilindraje = (cilindrajeSelect === 'all') || card.classList.contains('cilindraje-' + cilindrajeSelect);
+                const matchesPotencia = (potenciaSelect === 'all') || card.classList.contains('potencia-maxima-' + potenciaSelect);
+                const matchesCaballos = (caballoseSelect === 'all') || card.classList.contains('caballos-fuerza-' + caballoseSelect);
+                const matchesTraccion = (tranccionSelect === 'all') || card.classList.contains('traccion-' + tranccionSelect);
+                const matchesCambios = (cambiosSelect === 'all') || card.classList.contains('cambios-' + cambiosSelect);
+
+                if (matchesVehicle && matchesCilindraje && matchesPotencia && matchesCaballos && matchesTraccion && matchesCambios) {
+                    card.style.display = 'block'; // Muestra el vehículo que coincide con ambos filtros
+                } else {
+                    card.style.display = 'none'; // Oculta los demás vehículos
+                }
+
+                
+            });
+        }
+    
+
+
+        
+
+
+
+            
+
+
+        </script>
+</body>
+</html>
