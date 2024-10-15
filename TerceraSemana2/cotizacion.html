@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario de Cotización</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .form-cotizacion {
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    .form-cotizacion h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    #resumenCotizacion {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #e9ecef;
+      border-radius: 8px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ======================================BARRA DE NAVEGACION=============================== -->
+
+        <!--=================== Barra de navegacion ==============-->
+        <nav class="navbar navbar-expand-md bg-dark border-bottom border-body" data-bs-theme="dark">
+          <div class="container-fluid">
+              <!-- Botón toggle para pantallas pequeñas -->
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-toggler"
+                  aria-controls="navbar-toggler" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+              </button>
+      
+              <!-- Logo centrado en pantallas grandes, en móviles al lado del menú -->
+              <a class="navbar-brand d-md-none" href="index.html">
+                  <img src="images-proyect/Imagen2.png" width="80" alt="Icon">
+              </a>
+      
+              <!-- Contenido de la navbar -->
+              <div class="collapse navbar-collapse justify-content-between" id="navbar-toggler">
+                  <!-- Botones a la izquierda -->
+                  <ul class="navbar-nav me-auto d-flex justify-content-evenly align-items-center w-100 w-md-50">
+                      <li class="nav-item">
+                          <a class="nav-link" href="vehiculos.html">Vehículos</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="ofertas.html">Ofertas</a>
+                      </li>
+                  </ul>
+      
+                  <!-- Logo centrado en pantallas medianas en adelante -->
+                  <a class="navbar-brand d-none d-md-block mx-auto" href="index.html">
+                      <img src="images-proyect/Imagen2.png" width="100" alt="Icon">
+                  </a>
+      
+                  <!-- Botones a la derecha -->
+                  <ul class="navbar-nav ms-auto d-flex justify-content-evenly align-items-center w-100 w-md-50">
+                      <li class="nav-item">
+                          <a class="nav-link" href="cotizacion.html">Cotización</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="ubicacion.html">Ubicación</a>
+                      </li>
+                  </ul>
+              </div>
+          </div>
+      </nav>
+
+
+
+
+
+
+
+
+
+
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="form-cotizacion">
+          <h2>Formulario de Cotización de Vehículo</h2>
+          <form id="formCotizacion">
+            <!-- Información del Cliente -->
+            <div class="mb-3">
+              <label for="nombre" class="form-label">Nombre Completo</label>
+              <input type="text" class="form-control" id="nombre" required placeholder="Tu nombre completo">
+            </div>
+
+            <div class="mb-3">
+              <label for="email" class="form-label">Correo Electrónico</label>
+              <input type="email" class="form-control" id="email" required placeholder="Tu correo electrónico">
+            </div>
+
+            <div class="mb-3">
+              <label for="telefono" class="form-label">Teléfono</label>
+              <input type="tel" class="form-control" id="telefono" required placeholder="Tu número de teléfono">
+            </div>
+
+            <!-- Selección del Vehículo -->
+            <div class="mb-3">
+              <label for="vehiculo" class="form-label">Modelo del Vehículo</label>
+              <select class="form-select" id="vehiculo" required>
+                <option value="" disabled selected>Selecciona un modelo</option>
+                <option value="sedan">Sedán</option>
+                <option value="suv">SUV</option>
+                <option value="camioneta">Camioneta</option>
+                <option value="deportivo">Deportivo</option>
+              </select>
+            </div>
+
+            <!-- Información Adicional -->
+            <div class="mb-3">
+              <label for="color" class="form-label">Color Preferido</label>
+              <input type="text" class="form-control" id="color" placeholder="Ingresa el color preferido">
+            </div>
+
+            <div class="mb-3">
+              <label for="comentarios" class="form-label">Comentarios Adicionales</label>
+              <textarea class="form-control" id="comentarios" rows="3" placeholder="Especifica detalles adicionales"></textarea>
+            </div>
+
+            <!-- Botón para Enviar el Formulario -->
+            <button type="submit" class="btn btn-primary w-100">Solicitar Cotización</button>
+          </form>
+
+          <!-- Mensaje de éxito -->
+          <div id="mensaje" class="alert alert-success mt-3 d-none">
+            ¡Cotización guardada exitosamente!
+          </div>
+
+          <!-- Resumen de Cotización -->
+          <div id="resumenCotizacion">
+            <h4>Resumen de tu cotización:</h4>
+            <p><strong>Nombre:</strong> <span id="resumenNombre"></span></p>
+            <p><strong>Email:</strong> <span id="resumenEmail"></span></p>
+            <p><strong>Teléfono:</strong> <span id="resumenTelefono"></span></p>
+            <p><strong>Vehículo:</strong> <span id="resumenVehiculo"></span></p>
+            <p><strong>Color Preferido:</strong> <span id="resumenColor"></span></p>
+            <p><strong>Comentarios:</strong> <span id="resumenComentarios"></span></p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.getElementById('formCotizacion').addEventListener('submit', function(event) {
+      event.preventDefault(); // Evita el envío del formulario
+
+      // Capturar los valores del formulario
+      const nombre = document.getElementById('nombre').value;
+      const email = document.getElementById('email').value;
+      const telefono = document.getElementById('telefono').value;
+      const vehiculo = document.getElementById('vehiculo').value;
+      const color = document.getElementById('color').value;
+      const comentarios = document.getElementById('comentarios').value;
+
+      // Crear un objeto con los datos
+      const cotizacion = {
+        nombre,
+        email,
+        telefono,
+        vehiculo,
+        color,
+        comentarios
+      };
+
+      // Guardar los datos en localStorage
+      localStorage.setItem('cotizacion', JSON.stringify(cotizacion));
+
+      // Mostrar mensaje de éxito
+      const mensaje = document.getElementById('mensaje');
+      mensaje.classList.remove('d-none');
+      mensaje.textContent = "¡Cotización guardada exitosamente!";
+
+      // Mostrar el resumen de la cotización
+      document.getElementById('resumenNombre').textContent = nombre;
+      document.getElementById('resumenEmail').textContent = email;
+      document.getElementById('resumenTelefono').textContent = telefono;
+      document.getElementById('resumenVehiculo').textContent = vehiculo;
+      document.getElementById('resumenColor').textContent = color;
+      document.getElementById('resumenComentarios').textContent = comentarios;
+      document.getElementById('resumenCotizacion').style.display = 'block';
+
+      // Limpiar el formulario
+      document.getElementById('formCotizacion').reset();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+    <h1>Lista de carros</h1>
+    <div>
+        <label for="marca">marca:</label>
+        <input type="submit" id="marca" min="0" max="100">
+      
+        <label for="mpg">Cilindros:</label>
+        <input type="number" id="mpg" min="0" max="100">
+      
+        <label for="cyl">Desplazamientos:</label>
+        <input type="number" id="cyl" min="0" max="100">
+      
+        <label for="disp">Hp</label>
+        <input type="number" id="disp" min="0" max="100">
+      
+        <button onclick="filtrarcarros()">Filtrar</button>
+      </div>
+
+
+
+
+    <table id="tablacarros">
+        <thead>
+            <tr>
+                <th style="background-color: aqua;">Marca</th>
+                <th>MPG</th>
+                <th>Cilindros</th>
+                <th>Desplazamientos</th>
+                <th>Hp</th>
+                <th>Draft</th>
+                <th>peso</th>
+                <th>Qsec</th>
+                <th>Vs</th>
+                <th>AM</th>
+                <th>Marchas</th>
+                <th>Carburador</th>
+            </tr>
+        </thead>
+
+        
+        <tbody>
+
+
+        </tbody>
+    </table>
+
+    <script src="js/datos.js"></script>
+</body>
+</html>
+

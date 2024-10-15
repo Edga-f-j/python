@@ -1,0 +1,91 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <!-- <link rel="stylesheet" href="estilos.css"> -->
+   <style>
+
+        body {
+            background-color: #f6f3f3ac;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+
+          h1{
+            text-align: center;
+          }
+        }
+        #appcal {
+            background-color: #87bdc5c7;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        #Pantalla {
+            width: 100%;
+            height: 50px;
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: right;
+            padding-right: 10px;
+            border-radius: 5px;
+            border: 1px solid #ced4da;
+        }
+        input[type="button"] {
+            width: 60px;
+            height: 60px;
+            font-size: 24px;
+            margin: 5px;
+            border-radius: 5px;
+        }
+        input[type="button"]:hover {
+            background-color: #007bff;
+            color: #ffffff;
+        }
+    
+   </style>
+</head>
+<body>
+
+
+  <div id="appcal" class="text-center">
+    <h1 class="mb-4">Calculadora</h1>
+    <form>
+        <input type="text" id="Pantalla" class="form-control mb-3" readonly>
+        <div class="d-grid gap-2 d-md-block">
+            <input type="button" value="1" class="btn btn-light" onclick="agregar('1')">
+            <input type="button" value="2" class="btn btn-light" onclick="agregar('2')">
+            <input type="button" value="3" class="btn btn-light" onclick="agregar('3')">
+            <input type="button" value="+" class="btn btn-light" onclick="agregar('+')">
+            <br>
+            <input type="button" value="4" class="btn btn-light" onclick="agregar('4')">
+            <input type="button" value="5" class="btn btn-light" onclick="agregar('5')">
+            <input type="button" value="6" class="btn btn-light" onclick="agregar('6')">
+            <input type="button" value="-" class="btn btn-light" onclick="agregar('-')">
+            <br>
+            <input type="button" value="7" class="btn btn-light" onclick="agregar('7')">
+            <input type="button" value="8" class="btn btn-light" onclick="agregar('8')">
+            <input type="button" value="9" class="btn btn-light" onclick="agregar('9')">
+            <input type="button" value="*" class="btn btn-light" onclick="agregar('*')">
+            <br>
+            <input type="button" value="0" class="btn btn-light" onclick="agregar('0')">
+            <input type="button" value="." class="btn btn-light" onclick="agregar('.')">
+            <input type="button" value="/" class="btn btn-light" onclick="agregar('/')">
+            <input type="button" value="=" class="btn btn-primary" onclick="calcular('')">
+            <br>
+            <input type="button" value="C" class="btn btn-danger" onclick="borrar('')">
+        </div>
+    </form>
+</div>
+
+
+
+    <script src="calculadora.js"></script>
+</body>
+</html>
