@@ -14,10 +14,12 @@ colombia = df["COL"]
 arg = df["ARG"]
 fecha = df["Date"]
 
-plt.plot(fecha,colombia, label='Colombia', color='blue', linestyle='--',linewidth=2)
-plt.plot(fecha,arg, label='Argentina', color='green', linestyle='-', linewidth=2)
-plt.xlabel('Eje X')
-plt.ylabel('Eje Y')
+print(arg)
 
-plt.title('TITULO')
-plt.show()
+# plt.plot(fecha,colombia, label='Colombia', color='blue', linestyle='--',linewidth=2)
+# plt.plot(fecha,arg, label='Argentina', color='green', linestyle='-', linewidth=2)
+# plt.xlabel('Eje X')
+# plt.ylabel('Eje Y')
+
+# plt.title('TITULO')
+# plt.show()
