@@ -1,70 +1,75 @@
+# import matplotlib.pyplot as plt
+# from sklearn.model_selection import train_test_split
+# from sklearn.preprocessing import StandardScaler
+# from sklearn.linear_model import LogisticRegression
+# from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
+
+
+# from sklearn.model_selection import train_test_split
+# from sklearn.linear_model import LinearRegression
+# from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+# # parte para guardar los datos en la variabe "df"
 import pandas as pd
+import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
-
-
-from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LinearRegression
-from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
-# parte para guardar los datos en la variabe "df"
 df = pd.read_csv("archivoss/tatakae.csv")
 
 
 
 
 # Seleccionar las columnas que vamos a usar como características (X) y la columna target (y)
-X = df[['Age', 'Heart rate', 'Systolic blood pressure', 'Diastolic blood pressure', 'Blood sugar', 'CK-MB', 'Troponin']]
-y = df['Result']  # Suponiendo que esta columna tiene 0 o 1 para representar infarto/no infarto
+# X = df[['Age', 'Heart rate', 'Systolic blood pressure', 'Diastolic blood pressure', 'Blood sugar', 'CK-MB', 'Troponin']]
+# y = df['Result']  # Suponiendo que esta columna tiene 0 o 1 para representar infarto/no infarto
 
-# Dividir los datos en conjunto de entrenamiento (80%) y prueba (20%)
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
-
-
-#####  ESCALAR DATOS #####
-scaler = StandardScaler()
-
-# Escalar las características
-X_train = scaler.fit_transform(X_train)
-X_test = scaler.transform(X_test)
+# # Dividir los datos en conjunto de entrenamiento (80%) y prueba (20%)
+# X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
 
 
+# #####  ESCALAR DATOS #####
+# scaler = StandardScaler()
 
-# Crear el modelo
-model = LogisticRegression()
-
-# Entrenar el modelo con los datos de entrenamiento
-model.fit(X_train, y_train)
+# # Escalar las características
+# X_train = scaler.fit_transform(X_train)
+# X_test = scaler.transform(X_test)
 
 
 
-# Hacer predicciones con el conjunto de prueba
-y_pred = model.predict(X_test)
 
-# Calcular la precisión del modelo
-accuracy = accuracy_score(y_test, y_pred)
-print(f'Precisión del modelo: {accuracy:.2f}')
+# # Crear el modelo
+# model = LogisticRegression()
 
-# Mostrar la matriz de confusión
-print('Matriz de confusión:')
-print(confusion_matrix(y_test, y_pred))
+# # Entrenar el modelo con los datos de entrenamiento
+# model.fit(X_train, y_train)
 
-# Mostrar un reporte de clasificación detallado
-print('Reporte de clasificación:')
-print(classification_report(y_test, y_pred))
 
-plt.figure(figsize=(10, 6))
-plt.plot(range(len(y_test)), y_test, label="Precio Real", marker='o')
-plt.plot(range(len(y_pred)), y_pred, label="Precio Predicho", marker='x')
-plt.xlabel("Ejemplos")
-plt.ylabel("Precio")
-plt.title("Comparación de Precios Reales vs Predichos")
-plt.legend()
-plt.show()
+
+# # Hacer predicciones con el conjunto de prueba
+# y_pred = model.predict(X_test)
+
+# # Calcular la precisión del modelo
+# accuracy = accuracy_score(y_test, y_pred)
+# print(f'Precisión del modelo: {accuracy:.2f}')
+
+# # Mostrar la matriz de confusión
+# print('Matriz de confusión:')
+# print(confusion_matrix(y_test, y_pred))
+
+# # Mostrar un reporte de clasificación detallado
+# print('Reporte de clasificación:')
+# print(classification_report(y_test, y_pred))
+
+# plt.figure(figsize=(10, 6))
+# plt.plot(range(len(y_test)), y_test, label="Precio Real", marker='o')
+# plt.plot(range(len(y_pred)), y_pred, label="Precio Predicho", marker='x')
+# plt.xlabel("Ejemplos")
+# plt.ylabel("Precio")
+# plt.title("Comparación de Precios Reales vs Predichos")
+# plt.legend()
+# plt.show()
 
 
 # plt.plot(Attack, yougn, label='Jovenes', color='blue', linestyle='--',linewidth=2)
@@ -82,34 +87,77 @@ plt.show()
 
 
 
-# X = df[['Age', 'Heart rate', 'Systolic blood pressure', 'Diastolic blood pressure', 'Blood sugar', 'CK-MB', 'Troponin']]
-# y = df['Result']  # Suponiendo que esta columna tiene 0 o 1 para representar infarto/no infarto
+########################################## MODELADO DE PREDICCION########################################
 
-# # Dividir los datos en conjunto de entrenamiento (80%) y prueba (20%)
-# X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-# # Entrenar modelo
-# model = LinearRegression()
-# model.fit(X_train, y_train)
-# # Hacer predicciones y evaluar
-# y_pred = model.predict(X_test)
-# mae = mean_absolute_error(y_test, y_pred)
-
-# r2 = r2_score(y_test, y_pred)
+# Seleccionar las características (X) y el target (y)
 
 
-# print("Error Absoluto Medio (MAE):", mae)
+# Asegúrate de que los datos en 'Result' sean numéricos
+import joblib
+import pickle
+df['Result'] = df['Result'].map({'positive': 1, 'negative': 0})  # Convertir a 1 y 0 si es necesario
 
-# print("Coeficiente de Determinación (R²):", r2)
+# X son las características y y es el resultado (0 o 1 para infarto/no infarto)
+X = df[['Age', 'Heart rate', 'Systolic blood pressure', 'Diastolic blood pressure', 'Blood sugar', 'CK-MB', 'Troponin']]
+y = df['Result'].astype(int)  # Asegúrate de que y sea de tipo entero
 
-# # Visualización
-# plt.figure(figsize=(10, 6))
-# plt.plot(range(len(y_test)), y_test, label="Precio Real", marker='o')
-# plt.plot(range(len(y_pred)), y_pred, label="Precio Predicho", marker='x')
-# plt.xlabel("Ejemplos")
-# plt.ylabel("Precio")
-# plt.title("Comparación de Precios Reales vs Predichos")
+# Dividir los datos en conjunto de entrenamiento (80%) y prueba (20%)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Entrenar el modelo de clasificación (Logistic Regression)
+model = LogisticRegression()
+model.fit(X_train, y_train)
+
+
+# Guardar el modelo entrenado en un archivo
+# joblib.dump(model, 'modelo_entrenado.pkl')
+# print("Modelo guardado exitosamente")
+
+with open('modelo_entrenado.pkl', 'wb') as file:
+    pickle.dump(model, file)
+
+# Hacer predicciones con el conjunto de prueba
+y_pred = model.predict(X_test).astype(int)  # Asegúrate de que las predicciones sean enteras
+
+# Evaluar el modelo con métricas de clasificación
+accuracy = accuracy_score(y_test, y_pred)
+print(f'Precisión del modelo: {accuracy:.2f}')
+
+# Mostrar la matriz de confusión
+print('Matriz de confusión:')
+print(confusion_matrix(y_test, y_pred))
+
+# Mostrar un reporte de clasificación detallado
+print('Reporte de clasificación:')
+print(classification_report(y_test, y_pred))
+
+# Visualización de comparación entre valores reales y predichos
+real_counts = np.bincount(y_test)  # Contar los valores reales de infarto/no infarto
+pred_counts = np.bincount(y_pred)  # Contar los valores predichos por el modelo
+
+# # Crear la gráfica de barras comparando real vs predicho
+# labels = ['No Infarto', 'Infarto']
+# x = np.arange(len(labels))  # Posición de las etiquetas
+
+# width = 0.35  # Ancho de las barras
+
+# plt.figure(figsize=(8, 6))
+# plt.bar(x - width/2, real_counts, width, label='Real')
+# plt.bar(x + width/2, pred_counts, width, label='Predicho')
+
+# plt.xlabel('Resultado')
+# plt.ylabel('Cantidad de personas')
+# plt.title('Comparación de Infartos Reales vs Predichos')
+# plt.xticks(x, labels)
 # plt.legend()
+
 # plt.show()
+
+
+
+
+
+
 
 
 
@@ -166,17 +214,32 @@ plt.show()
 ###########################################################
 ######################### Troponin  #########################
 
-# df['Grupo_Troponin'] = df['Troponin'].apply(lambda x: "Alto" if x<=0.004  else "Bajo")
+# # Crear el grupo por niveles de troponina y resultado
+# df['Grupo_Troponin'] = df['Troponin'].apply(lambda x: "Bajo" if x <= 0.01 else "Alto")
 
-# df_agrupacion2 = df.groupby(['Grupo_Troponin','Result']).size().unstack(fill_value=0)
+# # Agrupar por niveles de Troponina y resultados (infarto o no)
+# df_agrupacion2 = df.groupby(['Grupo_Troponin', 'Result']).size().unstack(fill_value=0)
 
-# df_agrupacion2.plot(kind='bar')
+# # Crear la gráfica de barras con mejoras visuales
+# ax = df_agrupacion2.plot(kind='bar', figsize=(10, 6), width=0.4, color=['#1f77b4', '#ff7f0e'])
 
-# plt.title('Personas con Troponin bajo y Troponin Alto con y  sin Infartos')
-# plt.xlabel('Grupo de Edad')
-# plt.ylabel('Cantidad de Personas')
+# # Título y etiquetas
+# plt.title('Comparación de personas con Troponin Bajo y Alto (Infarto vs No Infarto)', fontsize=14)
+# plt.xlabel('Nivel de Troponina', fontsize=12)
+# plt.ylabel('Cantidad de Personas', fontsize=12)
 
-# # Mostrar gráfica
+# # Añadir etiquetas de conteo encima de las barras
+# for container in ax.containers:
+#     ax.bar_label(container, label_type='edge', fontsize=10)
+
+
+# # Rotar las etiquetas del eje X para mayor legibilidad
+# plt.xticks(rotation=0)
+
+# # Ajustar la leyenda para indicar 'No Infarto' y 'Infarto'
+# ax.legend(['No Infarto', 'Infarto'], title='Resultado', fontsize=10)
+
+# # Mostrar la gráfica
 # plt.show()
 
 
@@ -201,4 +264,4 @@ plt.show()
 # plt.ylabel('Eje Y')
 
 # plt.title('TITULO')
-# plt.show()
+# plt.show(
